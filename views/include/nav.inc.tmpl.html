@@ -1,0 +1,26 @@
+        <nav class="navbar navbar-material-indigo navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Serve.07studio.ORG</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li{{ IF $_REQUEST.controller == 'Index' }} class="active"{{ END }}><a href="/">ABOUT</a></li>
+                        <li{{ IF $_REQUEST.controller == 'Hosts' }} class="active"{{ END }}><a href="/hosts">HOSTS</a></li>
+                        <li class="dropdown{{ IF $_REQUEST.controller == 'TOOLS' }} active{{ END }}">
+                            <a href="" data-target="#" class="dropdown-toggle" data-toggle="dropdown">TOOLS{{ IF $_REQUEST.controller == 'Tools' }} - {{ php::strtoupper($_REQUEST.action) }}{{ END }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-material-indigo">
+                                <li><a href="javascript:void(0)">SHADOWSOCKS</a></li>
+                                <li><a href="javascript:void(0)">GOAGENT</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>

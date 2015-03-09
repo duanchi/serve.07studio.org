@@ -1,0 +1,43 @@
+<html>
+{{ inc("header") }}
+    <body>
+{{ inc("nav")}}
+        
+        <div class="jumbotron jumbotron-material-indigo-300">
+            <div class="container">
+                <h1>Hello, world!</h1>
+                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+    </body>
+    <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/material.js"></script>
+    <script src="/assets/js/ripples.js"></script>
+    <script src="/assets/js/jquery.nouisilder.js"></script>
+    <script src="/assets/js/jquery.dropdown.js"></script>
+    <script>
+        $("#dropdown-menu select").dropdown();
+        $(function() {
+            $.material.init();
+            $(".shor").noUiSlider({
+                start: 40,
+                connect: "lower",
+                range: {
+                    min: 0,
+                    max: 100
+                }
+            });
+            
+            $(".svert").noUiSlider({
+                orientation: "vertical",
+                start: 40,
+                connect: "lower",
+                range: {
+                    min: 0,
+                    max: 100
+                }
+            });
+        });
+    </script>
+</html>
