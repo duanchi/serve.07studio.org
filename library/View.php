@@ -19,8 +19,12 @@ class View implements \Yaf\View_Interface {
 
     public function __construct($_template_file, $_conf = NULL, $_spec = NULL) {
 
-        $_config                =   \Yaf\Registry::get('config')->application->view;
-        $_engine                =   constant('self::VIEW_TYPE_' . strtoupper($_config->engine));
+        $_config                =   \Yaf\Registry::get('config')->get('application')->get('view');
+
+	    foreach($_config as $key => $node)
+		    $_config[$key]      =   $node;
+
+	    $_engine                =   constant('self::VIEW_TYPE_' . strtoupper($_config['engine']));
         $_class_name            =   '\\View\\' . $_engine;
 
         $this->__instance       =   new $_class_name(NULL, $_config);
@@ -79,12 +83,16 @@ class View implements \Yaf\View_Interface {
      * @return void
      */
     public function assign($spec, $value = null) {
-        $this->__instance->assign($spec, $value);
+        return $this->__instance->assign($spec, $value);
     }
 
     public function __set($property, $value) {
-        $this->assign($property, $value);
+        return $this->assign($property, $value);
     }
+
+	public function setRequest($_request) {
+		return $this->__instance->setRequest($_request);
+	}
 
     /**
      * Clear all assigned variables
@@ -96,7 +104,7 @@ class View implements \Yaf\View_Interface {
      * @return void
      */
     public function clearVars() {
-        $this->__instance->clearVars();
+        return $this->__instance->clearVars();
     }
 
     /**

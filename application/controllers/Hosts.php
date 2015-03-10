@@ -18,17 +18,12 @@
 class HostsController extends Yaf\Controller_Abstract {
 	
 	public function indexAction() {
+		$_md        =   file_get_contents(APPLICATION_PATH . '/public/test.md');
+		$_md_handle  =   new \Data\Markdown();
 
-        $this->getView()->assign(   '_HOSTS',
-                                    \IO\FILE::read(
-                                        \Yaf\Registry::get('config')
-                                            ->application
-                                            ->conf
-                                            ->hosts_path
-                                    )
-                                );
+		t($_md_handle->parse($_md));
 
-		return TRUE;
+		return FALSE;
 	}
 
     public function rawAction() {

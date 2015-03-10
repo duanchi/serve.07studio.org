@@ -27,6 +27,8 @@ interface Api {
      */
     public function getScriptPath();
 
+	public function setRequest($_request);
+
     /**
      * Assign variables to the template
      *

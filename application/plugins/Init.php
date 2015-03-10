@@ -33,19 +33,7 @@ class InitPlugin extends Yaf\Plugin_Abstract {
 			$request->action.
 			\Yaf\Registry::get('config')->application->view->suffix,
 
-			NULL,
-
-			[
-				'_REQUEST'  =>  [
-					'module'                =>  $request->module,
-					'controller'            =>  $request->controller,
-					'action'                =>  $request->action,
-					'method'                =>  $request->method,
-					'params'                =>  $request->getParams(),
-					'is_xml_http_request'   =>  $request->isXmlHttpRequest(),
-				]
-
-			]
+			NULL
 		));
 	}
 	

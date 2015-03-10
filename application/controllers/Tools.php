@@ -18,7 +18,10 @@
 class ToolsController extends Yaf\Controller_Abstract {
 	
 	public function indexAction() {
-		$this->forward('Index', 'Tools', 'shadowsocks');
+		//$this->forward('Index', 'Tools', 'shadowsocks');
+		$this->redirect('/Tools/shadowsocks');
+		$this->getView()->hello = 1;
+		return TRUE;
 	}
 
 	public function shadowsocksAction() {

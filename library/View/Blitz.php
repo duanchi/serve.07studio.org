@@ -14,6 +14,14 @@ class Blitz extends \Blitz implements Api
     private $__template_file        =   '';
     private $__config               =   [];
 	private $__plugin               =   NULL;
+	private $__request              =   [
+											'module'                =>  NULL,
+											'controller'            =>  NULL,
+											'action'                =>  NULL,
+											'method'                =>  'GET',
+											'params'                =>  NULL,
+											'is_xml_http_request'   =>  FALSE,
+										];
     private $__custom_function      =   [
                                             'inc'           =>  TRUE,
                                             //'strtoupper'    =>  TRUE
@@ -68,6 +76,11 @@ class Blitz extends \Blitz implements Api
         $this->set([$spec=>$value]);
     }
 
+	public function setRequest($_request) {
+		$this->__request            =   $_request;
+		$this->assign('_REQUEST', $_request);
+	}
+
     /**
      * Clear all assigned variables
      *
@@ -82,7 +95,19 @@ class Blitz extends \Blitz implements Api
     }
 
     public function display($name, $value = NULL) {
-        $this->load(file_get_contents($this->__template_file));
+
+	    $_template_file             =   !empty($this->__template_file) ?
+										    $this->__config['path'].
+										    DIRECTORY_SEPARATOR.
+										    $this->__request['controller'].
+										    DIRECTORY_SEPARATOR.
+										    $this->__request['action'].
+										    $this->__config['suffix']
+			                                :
+		                                    $this->__template_file;
+
+        $this->load(file_get_contents($_template_file));
+
         return parent::display();
     }
 

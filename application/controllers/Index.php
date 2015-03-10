@@ -19,8 +19,6 @@ class IndexController extends Yaf\Controller_Abstract {
 	
 	public function indexAction() {
 
-        $this->getView()->assign('_TMPL_INC_PATH', APPLICATION_PATH . '/views/include/header.inc.tmpl.html');
-
 		return TRUE;
 	}
 }
