@@ -11,13 +11,30 @@ namespace Data;
 
 class Markdown {
 
-	private $__instance     =   NULL;
+	const METHOD_PARSEDOWN                      =   'Parsedown';
+	const METHOD_SERIALDOWN                     =   'Serialdown';
 
-	public function __construct() {
-		$this->__instance   =   new Markdown\ParsedownExtra();
+	static private $__parsedown_instance        =   NULL;
+	static private $__markdown_instance         =   NULL;
+
+	static protected function __instance($_scope = self::METHOD_PARSEDOWN) {
+		switch($_scope) {
+			case self::METHOD_PARSEDOWN:
+				if (self::$__parsedown_instance == NULL) self::$__parsedown_instance    =   new Markdown\ParsedownExtra();
+				break;
+
+			case self::METHOD_MARKDOWN:
+				if (self::$__markdown_instance == NULL) self::$__markdown_instance      =   new Markdown\Markdown();
+				break;
+		}
+
 	}
 
 	public function html($_md_string) {
-		return $this->__instance->text($_md_string);
+		return $this->__instance(self::METHOD_PARSEDOWN)->text($_md_string);
+	}
+
+	public function serialize($_md_string) {
+		return $this->__instance(self::METHOD_SERIALDOWN)->serialize($_md_string);
 	}
 }
